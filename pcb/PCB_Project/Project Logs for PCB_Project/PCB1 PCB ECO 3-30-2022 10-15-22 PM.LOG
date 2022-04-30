@@ -1,0 +1,10 @@
+Change Component Designator: OldDesignator=upload NewDesignator=upload1
+Added Component: Designator=X1(XT2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "4Mhz"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetC4_2 Pin=X1-1
+Added Pin To Net: NetName=NetC3_2 Pin=X1-2
+Added Member To Class: ClassName=rf433 Member=Component C3 100pF
+Added Member To Class: ClassName=rf433 Member=Component C4 100pF
+Added Member To Class: ClassName=rf433 Member=Component X1 4Mhz
+Added Room: Name=rf433
