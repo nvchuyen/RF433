@@ -1,0 +1,65 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+twi_tx_index                                                                      0x01B1       1
+twi_rx_index                                                                      0x01B2       1
+twi_result                                                                        0x01B3       1
+__ds18b20_scratch_pad                                                             0x01B4       9
+rx_buffer                                                                         0x01BD      64
+slave_address                                                                     0x01FD       1
+twi_tx_buffer                                                                     0x01FE       2
+bytes_to_tx                                                                       0x0200       1
+twi_rx_buffer                                                                     0x0201       2
+bytes_to_rx                                                                       0x0203       1
+twi_rx_buffer_size                                                                0x0204       1
+twi_slave_rx_handler                                                              0x0205       2
+twi_slave_tx_handler                                                              0x0207       2
+_seed                                                                             0x0209       4
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+lcd                                                                               R5           1
+rx_wr_index                                                                       R4           1
+rx_rd_index                                                                       R7           1
+rx_counter                                                                        R6           1
+rx_buffer_overflow                                                                R2.0      1bit
+twi_flag                                                                          R2.1      1bit
+twi_ready                                                                         R2.2      1bit
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+PCF8574_write                                                                     0x000A9      8
+twi_lcd_4bit_send                                                                 0x000B1     19
+twi_lcd_cmd                                                                       0x000C4      7
+twi_lcd_dwr                                                                       0x000CB      5
+twi_lcd_msg                                                                       0x000D0      9
+twi_lcd_clear                                                                     0x000D9      2
+twi_lcd_init                                                                      0x000DB     35
+usart_rx_isr                                                                      0x000FE     68
+main                                                                              0x00142     57
+twi_init                                                                          0x0017B     39
+twi_start                                                                         0x001A2     10
+twi_write_cmd                                                                     0x001AC     10
+twi_write_dwr                                                                     0x001B6     10
+twi_stop                                                                          0x001C0      3
+usart_init                                                                        0x001C3     10
+usart_tx                                                                          0x001CD      6
+usart_msg                                                                         0x001D3     10
+twi_int_handler                                                                   0x001DD    355
+ftrunc                                                                            0x00340     48
+floor                                                                             0x00370     12
+log                                                                               0x0037C    102
+exp                                                                               0x003E2    113
+pow                                                                               0x00453     48
+putchar                                                                           0x00483      7
+put_usart_G102                                                                    0x0048A     11
+_print_G102                                                                       0x00495    279
+printf                                                                            0x005AC     32
+strlen                                                                            0x005CC     11
+strlenf                                                                           0x005D7     12
