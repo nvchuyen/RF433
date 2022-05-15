@@ -1,0 +1,4 @@
+Added Pin To Net: NetName=DATA_11 Pin=C8-2
+Added Pin To Net: NetName=DATA_11 Pin=IC1-26
+Added Net: Name=DATA_11
+Added Room: Name=rf433

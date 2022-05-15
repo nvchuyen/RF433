@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=PD6 Pin=IC1-12
+Removed Pin From Net: NetName=PD7 Pin=IC1-13
+Removed Pin From Net: NetName=LED2 Pin=IC1-14
+Change Component Comment : Designator=R7 Old Comment=10k New Comment=4.7k
+Added Pin To Net: NetName=LED2 Pin=IC1-12
+Added Pin To Net: NetName=PD6 Pin=IC1-13
+Added Pin To Net: NetName=PD7 Pin=IC1-14
+Change Net Name : Old Net Name=PD6 New Net Name=PD7
+Change Net Name : Old Net Name=PD7 New Net Name=PB0
+Added Room: Name=rf433

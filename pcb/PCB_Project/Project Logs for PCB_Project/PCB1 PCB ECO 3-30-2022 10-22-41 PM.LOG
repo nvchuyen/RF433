@@ -1,0 +1,29 @@
+Change Component Footprint: Designator=C11 Old Footprint=SM-0805 New Footprint=CN1
+Change Component Comment : Designator=C11 Old Comment=103 New Comment=100pF
+Change component parameters: Designator = "C11"; Footprint = "CN1"; UniqueID = "\RRXPKIDI"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Value"; Value = "100pF"; VariantName = "[No Variations]"
+Added Component: Designator=LED1(LED-3)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "LED 3 ly Single Colour"; VariantName = "[No Variations]"
+Added Component: Designator=LED2(LED-3)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Value"; Value = "LED 3 ly Single Colour"; VariantName = "[No Variations]"
+Added Component: Designator=U2(SOT223)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=LED1 Pin=LED1-2
+Added Pin To Net: NetName=LED2 Pin=LED2-2
+Added Pin To Net: NetName=GND Pin=U2-1
+Added Pin To Net: NetName=3v3 Pin=U2-2
+Added Pin To Net: NetName=5v Pin=U2-3
+Added Pin To Net: NetName=3v3 Pin=U2-4
+Added Pin To Net: NetName=NetLED1_1 Pin=LED1-1
+Added Pin To Net: NetName=NetLED1_1 Pin=R2-1
+Added Net: Name=NetLED1_1
+Added Pin To Net: NetName=NetLED2_1 Pin=LED2-1
+Added Pin To Net: NetName=NetLED2_1 Pin=R3-1
+Added Net: Name=NetLED2_1
+Added Member To Class: ClassName=rf433 Member=Component LED1 LED
+Added Member To Class: ClassName=rf433 Member=Component LED2 LED
+Added Member To Class: ClassName=rf433 Member=Component U2 AMS1117
+Added Room: Name=rf433

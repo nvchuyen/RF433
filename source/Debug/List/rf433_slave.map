@@ -1,0 +1,56 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+twi_tx_index                                                                      0x01F9       1
+twi_rx_index                                                                      0x01FA       1
+twi_result                                                                        0x01FB       1
+__ds18b20_scratch_pad                                                             0x01FC       9
+temp                                                                              0x0205       4
+slave_address                                                                     0x0209       1
+twi_tx_buffer                                                                     0x020A       2
+bytes_to_tx                                                                       0x020C       1
+twi_rx_buffer                                                                     0x020D       2
+bytes_to_rx                                                                       0x020F       1
+twi_rx_buffer_size                                                                0x0210       1
+twi_slave_rx_handler                                                              0x0211       2
+twi_slave_tx_handler                                                              0x0213       2
+_seed                                                                             0x0215       4
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+lcd                                                                               R5           1
+twi_flag                                                                          R2.0      1bit
+twi_ready                                                                         R2.1      1bit
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+main                                                                              0x000C8     43
+twi_init                                                                          0x000F3     39
+usart_init                                                                        0x0011A     10
+usart_tx                                                                          0x00124      6
+usart_msg                                                                         0x0012A     14
+twi_int_handler                                                                   0x00138    355
+ftrunc                                                                            0x0029B     48
+floor                                                                             0x002CB     12
+log                                                                               0x002D7    100
+exp                                                                               0x0033B     98
+pow                                                                               0x0039D     48
+putchar                                                                           0x003CD      7
+put_usart_G102                                                                    0x003D4      7
+_ftoe_G102                                                                        0x003DB    141
+_print_G102                                                                       0x00468    464
+printf                                                                            0x00638     30
+ds18b20_select                                                                    0x00656     28
+ds18b20_read_spd                                                                  0x00672     33
+ds18b20_temperature                                                               0x00693     55
+ds18b20_init                                                                      0x006CA     59
+strcpyf                                                                           0x00705     12
+strlen                                                                            0x00711     11
+strlenf                                                                           0x0071C     12
+ftoa                                                                              0x00728    128

@@ -1,0 +1,63 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+twi_tx_index                                                                      0x01E2       1
+twi_rx_index                                                                      0x01E3       1
+twi_result                                                                        0x01E4       1
+__ds1820_scratch_pad                                                              0x01E5       9
+temp                                                                              0x01EE       4
+slave_address                                                                     0x01F2       1
+twi_tx_buffer                                                                     0x01F3       2
+bytes_to_tx                                                                       0x01F5       1
+twi_rx_buffer                                                                     0x01F6       2
+bytes_to_rx                                                                       0x01F8       1
+twi_rx_buffer_size                                                                0x01F9       1
+twi_slave_rx_handler                                                              0x01FA       2
+twi_slave_tx_handler                                                              0x01FC       2
+_seed                                                                             0x01FE       4
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+lcd                                                                               R5           1
+twi_flag                                                                          R2.0      1bit
+twi_ready                                                                         R2.1      1bit
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+PCF8574_write                                                                     0x000B9      8
+twi_lcd_4bit_send                                                                 0x000C1     19
+twi_lcd_cmd                                                                       0x000D4      7
+twi_lcd_dwr                                                                       0x000DB      5
+twi_lcd_msg                                                                       0x000E0      9
+twi_lcd_clear                                                                     0x000E9      2
+twi_lcd_init                                                                      0x000EB     35
+main                                                                              0x0010E     30
+twi_init                                                                          0x0012C     37
+twi_start                                                                         0x00151     15
+twi_write_cmd                                                                     0x00160     13
+twi_write_dwr                                                                     0x0016D     13
+twi_stop                                                                          0x0017A      3
+usart_init                                                                        0x0017D     10
+usart_tx                                                                          0x00187      6
+usart_msg                                                                         0x0018D     10
+twi_int_handler                                                                   0x00197    355
+ftrunc                                                                            0x002FA     48
+floor                                                                             0x0032A     12
+log                                                                               0x00336    100
+exp                                                                               0x0039A     98
+pow                                                                               0x003FC     48
+putchar                                                                           0x0042C      7
+put_usart_G103                                                                    0x00433      7
+_ftoe_G103                                                                        0x0043A    141
+_print_G103                                                                       0x004C7    464
+printf                                                                            0x00697     30
+strcpyf                                                                           0x006B5     12
+strlen                                                                            0x006C1     11
+strlenf                                                                           0x006CC     12
+ftoa                                                                              0x006D8    128

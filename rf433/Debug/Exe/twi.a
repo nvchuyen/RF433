@@ -1,0 +1,471 @@
+;/*
+;
+;		TWI MAIN FILE
+;		twi.c
+;*/
+;
+;#include "twi.h"
+;PCODE: $00000000 VOL: 0
+	#ifndef __SLEEP_DEFINED__
+;PCODE: $00000001 VOL: 0
+	#define __SLEEP_DEFINED__
+;PCODE: $00000002 VOL: 0
+	.EQU __se_bit=0x80
+;PCODE: $00000003 VOL: 0
+	.EQU __sm_mask=0x70
+;PCODE: $00000004 VOL: 0
+	.EQU __sm_powerdown=0x20
+;PCODE: $00000005 VOL: 0
+	.EQU __sm_powersave=0x30
+;PCODE: $00000006 VOL: 0
+	.EQU __sm_standby=0x60
+;PCODE: $00000007 VOL: 0
+	.EQU __sm_ext_standby=0x70
+;PCODE: $00000008 VOL: 0
+	.EQU __sm_adc_noise_red=0x10
+;PCODE: $00000009 VOL: 0
+	.SET power_ctrl_reg=mcucr
+;PCODE: $0000000A VOL: 0
+	#endif
+;PCODE: $0000000B VOL: 0
+;PCODE: $0000000C VOL: 0
+;#include <mega8.h>
+;#include <delay.h>
+;#define F_CPU 8000000UL
+;
+;void twi_init()
+; 0001 000D {
+
+	.CSEG
+;PCODE: $0000000D VOL: 0
+;PCODE: $0000000E VOL: 0
+; 0001 000E 	DDRC = 0x30;								//--- PORTC Last two bit as Output
+;PCODE: $0000000F VOL: 0
+;PCODE: $00000010 VOL: 0
+; 0001 000F 	PORTC = 0x30;
+;PCODE: $00000011 VOL: 0
+;PCODE: $00000012 VOL: 0
+; 0001 0010 
+; 0001 0011 	usart_init();								//--- Usart Initialization
+;PCODE: $00000013 VOL: 0
+; 0001 0012 	usart_msg("CODE-N-LOGIC I2C:");				//--- Send String to Com Port of PC
+;PCODE: $00000014 VOL: 0
+;PCODE: $00000015 VOL: 0
+;PCODE: $00000016 VOL: 0
+; 0001 0013 	usart_tx(0x0d);								//--- Next Line
+;PCODE: $00000017 VOL: 0
+;PCODE: $00000018 VOL: 0
+; 0001 0014 
+; 0001 0015 	TWCR &= ~(1<<TWEN);							//--- Diable TWI
+;PCODE: $00000019 VOL: 0
+;PCODE: $0000001A VOL: 0
+;PCODE: $0000001B VOL: 0
+; 0001 0016 	TWBR = BITRATE(TWSR = 0x00);	 			//--- Bit rate with prescaler 4
+;PCODE: $0000001C VOL: 0
+;PCODE: $0000001D VOL: 0
+;PCODE: $0000001E VOL: 0
+;PCODE: $0000001F VOL: 0
+;PCODE: $00000020 VOL: 0
+;PCODE: $00000021 VOL: 0
+;PCODE: $00000022 VOL: 0
+;PCODE: $00000023 VOL: 0
+;PCODE: $00000024 VOL: 0
+;PCODE: $00000025 VOL: 0
+;PCODE: $00000026 VOL: 0
+;PCODE: $00000027 VOL: 0
+;PCODE: $00000028 VOL: 0
+; 0001 0017 	TWCR = (1<<TWEN);							//--- Enable TWI
+;PCODE: $00000029 VOL: 0
+;PCODE: $0000002A VOL: 0
+; 0001 0018 	delay_us(10);								//--- Delay
+;PCODE: $0000002B VOL: 0
+; 0001 0019 }
+;PCODE: $0000002C VOL: 0
+;PCODE: $0000002D VOL: 0
+
+	.DSEG
+_0x20003:
+	.BYTE 0x12
+;
+;/* Function to Send Start Condition */
+;
+;void twi_start()
+; 0001 001E {
+
+	.CSEG
+;PCODE: $0000002E VOL: 0
+;PCODE: $0000002F VOL: 0
+; 0001 001F     char status;
+; 0001 0020 	TWCR= (1<<TWINT)|(1<<TWSTA)|(1<<TWEN);		//--- Start Condition as per Datasheet
+;PCODE: $00000030 VOL: 0
+;	status -> R17
+;PCODE: $00000031 VOL: 0
+;PCODE: $00000032 VOL: 0
+; 0001 0021 	while(!(TWCR & (1<<TWINT)));				//--- Wait till start condition is transmitted to Slave
+;PCODE: $00000033 VOL: 0
+;PCODE: $00000034 VOL: 0
+;PCODE: $00000035 VOL: 0
+;PCODE: $00000036 VOL: 0
+;PCODE: $00000037 VOL: 0
+;PCODE: $00000038 VOL: 0
+; 0001 0022     while(!(TWCR&(1<<TWINT)));	                /* Wait until TWI finish its current job */
+;PCODE: $00000039 VOL: 0
+;PCODE: $0000003A VOL: 0
+;PCODE: $0000003B VOL: 0
+;PCODE: $0000003C VOL: 0
+;PCODE: $0000003D VOL: 0
+;PCODE: $0000003E VOL: 0
+; 0001 0023     status=TWSR&0xF8;		                    /* Read TWI status register */
+;PCODE: $0000003F VOL: 0
+;PCODE: $00000040 VOL: 0
+;PCODE: $00000041 VOL: 0
+; 0001 0024     if(status!=0x10) return ;		            /* Check for repeated start transmitted */
+;PCODE: $00000042 VOL: 0
+;PCODE: $00000043 VOL: 0
+;PCODE: $00000044 VOL: 0
+;PCODE: $00000045 VOL: 0
+;PCODE: $00000046 VOL: 0
+; 0001 0025 
+; 0001 0026 	usart_msg("Start Exe.");					//--- Feedback msg to check for error
+;PCODE: $00000047 VOL: 0
+;PCODE: $00000048 VOL: 0
+;PCODE: $00000049 VOL: 0
+;PCODE: $0000004A VOL: 0
+; 0001 0027 	usart_tx(0x0D);								//--- Next Line
+;PCODE: $0000004B VOL: 0
+;PCODE: $0000004C VOL: 0
+; 0001 0028 }
+;PCODE: $0000004D VOL: 0
+;PCODE: $0000004E VOL: 0
+;PCODE: $0000004F VOL: 0
+
+	.DSEG
+_0x2000B:
+	.BYTE 0xB
+;
+;/* Function to Send Slave Address for Write operation */
+;
+;void twi_write_cmd(unsigned char address)
+; 0001 002D {
+
+	.CSEG
+;PCODE: $00000050 VOL: 0
+;PCODE: $00000051 VOL: 0
+; 0001 002E     char status;
+; 0001 002F 	TWDR=address;								//--- SLA Address and write instruction
+;PCODE: $00000052 VOL: 0
+;PCODE: $00000053 VOL: 0
+;	address -> Y+1
+;	status -> R17
+;PCODE: $00000054 VOL: 0
+;PCODE: $00000055 VOL: 0
+; 0001 0030 	TWCR=(1<<TWINT)|(1<<TWEN);					//--- Clear TWI interrupt flag,Enable TWI
+;PCODE: $00000056 VOL: 0
+;PCODE: $00000057 VOL: 0
+; 0001 0031 	while (!(TWCR & (1<<TWINT)));				//--- Wait till complete TWDR byte transmitted to Slave
+;PCODE: $00000058 VOL: 0
+;PCODE: $00000059 VOL: 0
+;PCODE: $0000005A VOL: 0
+;PCODE: $0000005B VOL: 0
+;PCODE: $0000005C VOL: 0
+;PCODE: $0000005D VOL: 0
+; 0001 0032     status=TWSR&0xF8;		    /* Read TWI status register */
+;PCODE: $0000005E VOL: 0
+;PCODE: $0000005F VOL: 0
+;PCODE: $00000060 VOL: 0
+; 0001 0033     if(status==0x28) return ;	/* Check for data transmitted &ack received */
+;PCODE: $00000061 VOL: 0
+;PCODE: $00000062 VOL: 0
+;PCODE: $00000063 VOL: 0
+;PCODE: $00000064 VOL: 0
+;PCODE: $00000065 VOL: 0
+;PCODE: $00000066 VOL: 0
+;PCODE: $00000067 VOL: 0
+; 0001 0034 
+; 0001 0035 	usart_msg("ACK Received for MT SLA");		//--- Feedback msg to check for error
+;PCODE: $00000068 VOL: 0
+;PCODE: $00000069 VOL: 0
+;PCODE: $0000006A VOL: 0
+;PCODE: $0000006B VOL: 0
+; 0001 0036 	usart_tx(0x0D);								//--- Next Line
+;PCODE: $0000006C VOL: 0
+;PCODE: $0000006D VOL: 0
+; 0001 0037 }
+;PCODE: $0000006E VOL: 0
+;PCODE: $0000006F VOL: 0
+;PCODE: $00000070 VOL: 0
+;PCODE: $00000071 VOL: 0
+;PCODE: $00000072 VOL: 0
+
+	.DSEG
+_0x20010:
+	.BYTE 0x18
+;
+;/* Function to Send Data to Slave Device  */
+;
+;void twi_write_dwr(unsigned char data)
+; 0001 003C {
+
+	.CSEG
+;PCODE: $00000073 VOL: 0
+;PCODE: $00000074 VOL: 0
+; 0001 003D     char status;
+; 0001 003E 	TWDR=data;									//--- Put data in TWDR
+;PCODE: $00000075 VOL: 0
+;PCODE: $00000076 VOL: 0
+;	data -> Y+1
+;	status -> R17
+;PCODE: $00000077 VOL: 0
+;PCODE: $00000078 VOL: 0
+; 0001 003F 	TWCR=(1<<TWINT)|(1<<TWEN);					//--- Clear TWI interrupt flag,Enable TWI
+;PCODE: $00000079 VOL: 0
+;PCODE: $0000007A VOL: 0
+; 0001 0040 	while(!(TWCR&(1<<TWINT)));	/* Wait until TWI finish its current job */
+;PCODE: $0000007B VOL: 0
+;PCODE: $0000007C VOL: 0
+;PCODE: $0000007D VOL: 0
+;PCODE: $0000007E VOL: 0
+;PCODE: $0000007F VOL: 0
+;PCODE: $00000080 VOL: 0
+; 0001 0041     status=TWSR&0xF8;		    /* Read TWI status register */
+;PCODE: $00000081 VOL: 0
+;PCODE: $00000082 VOL: 0
+;PCODE: $00000083 VOL: 0
+; 0001 0042     if(status==0x28) return ;	/* Check for data transmitted &ack received */
+;PCODE: $00000084 VOL: 0
+;PCODE: $00000085 VOL: 0
+;PCODE: $00000086 VOL: 0
+;PCODE: $00000087 VOL: 0
+;PCODE: $00000088 VOL: 0
+;PCODE: $00000089 VOL: 0
+;PCODE: $0000008A VOL: 0
+; 0001 0043 
+; 0001 0044 	usart_msg("ACK Received for MT Data");		//--- Feedback msg to check error
+;PCODE: $0000008B VOL: 0
+;PCODE: $0000008C VOL: 0
+;PCODE: $0000008D VOL: 0
+;PCODE: $0000008E VOL: 0
+; 0001 0045 	usart_tx(0x0D);								//--- Next Line
+;PCODE: $0000008F VOL: 0
+;PCODE: $00000090 VOL: 0
+; 0001 0046 
+; 0001 0047 }
+;PCODE: $00000091 VOL: 0
+;PCODE: $00000092 VOL: 0
+;PCODE: $00000093 VOL: 0
+;PCODE: $00000094 VOL: 0
+;PCODE: $00000095 VOL: 0
+
+	.DSEG
+_0x20015:
+	.BYTE 0x19
+;
+;/* Function to Send Stop Condition */
+;
+;void twi_stop()
+; 0001 004C {
+
+	.CSEG
+;PCODE: $00000096 VOL: 0
+;PCODE: $00000097 VOL: 0
+; 0001 004D 	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWSTO);		//--- Stop Condition as per Datasheet
+;PCODE: $00000098 VOL: 0
+;PCODE: $00000099 VOL: 0
+; 0001 004E }
+;PCODE: $0000009A VOL: 0
+;PCODE: $0000009B VOL: 0
+;
+;/* Function to Send Repeated Start Condition */
+;
+;
+;void twi_repeated_start()
+; 0001 0054 {
+;PCODE: $0000009C VOL: 0
+;PCODE: $0000009D VOL: 0
+; 0001 0055     char status;
+; 0001 0056 	TWCR= (1<<TWINT)|(1<<TWSTA)|(1<<TWEN);		//--- Repeated Start Condition as per Datasheet
+;PCODE: $0000009E VOL: 0
+;	status -> R17
+;PCODE: $0000009F VOL: 0
+;PCODE: $000000A0 VOL: 0
+; 0001 0057 	while(!(TWCR & (1<<TWINT)));				//--- Wait till restart condition is transmitted to Slave
+;PCODE: $000000A1 VOL: 0
+;PCODE: $000000A2 VOL: 0
+;PCODE: $000000A3 VOL: 0
+;PCODE: $000000A4 VOL: 0
+;PCODE: $000000A5 VOL: 0
+;PCODE: $000000A6 VOL: 0
+; 0001 0058 	status=TWSR&0xF8;		/* Read TWI status register */
+;PCODE: $000000A7 VOL: 0
+;PCODE: $000000A8 VOL: 0
+;PCODE: $000000A9 VOL: 0
+; 0001 0059     if(status!=0x10)     return ;		/* Check for repeated start transmitted */
+;PCODE: $000000AA VOL: 0
+;PCODE: $000000AB VOL: 0
+;PCODE: $000000AC VOL: 0
+;PCODE: $000000AD VOL: 0
+;PCODE: $000000AE VOL: 0
+; 0001 005A 
+; 0001 005B 	usart_msg("Repeated Start Exe.");			//--- Feedback msg to check error
+;PCODE: $000000AF VOL: 0
+;PCODE: $000000B0 VOL: 0
+;PCODE: $000000B1 VOL: 0
+;PCODE: $000000B2 VOL: 0
+; 0001 005C 	usart_tx(0x0D);								//--- Next Line
+;PCODE: $000000B3 VOL: 0
+;PCODE: $000000B4 VOL: 0
+; 0001 005D }
+;PCODE: $000000B5 VOL: 0
+;PCODE: $000000B6 VOL: 0
+;PCODE: $000000B7 VOL: 0
+
+	.DSEG
+_0x2001A:
+	.BYTE 0x14
+;
+;
+;/* Function to Send Read Acknowledgment */
+;
+;char twi_read_ack()
+; 0001 0063 {
+
+	.CSEG
+;PCODE: $000000B8 VOL: 0
+;PCODE: $000000B9 VOL: 0
+; 0001 0064 	TWCR=(1<<TWEN)|(1<<TWINT)|(1<<TWEA);		//--- Acknowledgment Condition as per Datasheet
+;PCODE: $000000BA VOL: 0
+;PCODE: $000000BB VOL: 0
+; 0001 0065 	while (!(TWCR & (1<<TWINT)));				//--- Wait until Acknowledgment Condition is transmitted to Slave
+;PCODE: $000000BC VOL: 0
+;PCODE: $000000BD VOL: 0
+;PCODE: $000000BE VOL: 0
+;PCODE: $000000BF VOL: 0
+;PCODE: $000000C0 VOL: 0
+;PCODE: $000000C1 VOL: 0
+; 0001 0066 //	while(TW_STATUS != TW_MR_DATA_ACK);			//--- Check for Acknowledgment
+; 0001 0067 //	usart_msg("Receiving MR data ACK ");		//--- Feedback msg to check error
+; 0001 0068 //	usart_tx(0x0D);								//--- Next Line
+; 0001 0069 	return TWDR;								//--- Return received data from Slave
+;PCODE: $000000C2 VOL: 0
+;PCODE: $000000C3 VOL: 0
+; 0001 006A }
+;PCODE: $000000C4 VOL: 0
+;
+;/* Function to Send Read No Acknowledgment */
+;
+;char twi_read_nack()
+; 0001 006F {
+;PCODE: $000000C5 VOL: 0
+;PCODE: $000000C6 VOL: 0
+; 0001 0070 	TWCR=(1<<TWEN)|(1<<TWINT);					//--- No Acknowledgment Condition as per Datasheet
+;PCODE: $000000C7 VOL: 0
+;PCODE: $000000C8 VOL: 0
+; 0001 0071 	while (!(TWCR & (1<<TWINT)));				//--- Wait until No Acknowledgment Condition is transmitted to Slave
+;PCODE: $000000C9 VOL: 0
+;PCODE: $000000CA VOL: 0
+;PCODE: $000000CB VOL: 0
+;PCODE: $000000CC VOL: 0
+;PCODE: $000000CD VOL: 0
+;PCODE: $000000CE VOL: 0
+; 0001 0072 //	while(TW_STATUS != TW_MR_DATA_NACK);		//--- Check for Acknowledgment
+; 0001 0073 //	usart_msg("Receiving MR Data NACK");		//--- Feedback msg to check error
+; 0001 0074 //	usart_tx(0x0D);								//--- Next Line
+; 0001 0075 	return TWDR;								//--- Return received data
+;PCODE: $000000CF VOL: 0
+;PCODE: $000000D0 VOL: 0
+; 0001 0076 }
+;PCODE: $000000D1 VOL: 0
+;
+;/* Function to Initialize USART */
+;
+;void usart_init()
+; 0001 007B {
+;PCODE: $000000D2 VOL: 0
+;PCODE: $000000D3 VOL: 0
+; 0001 007C 	UBRRH = 0;										//--- USART Baud Rate is set to 115200
+;PCODE: $000000D4 VOL: 0
+;PCODE: $000000D5 VOL: 0
+; 0001 007D 	UBRRL = 0x08;
+;PCODE: $000000D6 VOL: 0
+;PCODE: $000000D7 VOL: 0
+; 0001 007E 	UCSRC = (1<<URSEL) | (1<<UCSZ1) | (1<<UCSZ0);	//--- 8-Bit Data Selected
+;PCODE: $000000D8 VOL: 0
+;PCODE: $000000D9 VOL: 0
+; 0001 007F 	UCSRB = (1<<TXEN) | (1<<RXEN);					//--- Enable TX & RX
+;PCODE: $000000DA VOL: 0
+;PCODE: $000000DB VOL: 0
+; 0001 0080 }
+;PCODE: $000000DC VOL: 0
+;PCODE: $000000DD VOL: 0
+;
+;/* Function to Transmit data */
+;
+;void usart_tx(char x)
+; 0001 0085 {
+;PCODE: $000000DE VOL: 0
+;PCODE: $000000DF VOL: 0
+; 0001 0086 	while (!( UCSRA & (1<<UDRE)));					//--- Check for Buffer is empty
+;PCODE: $000000E0 VOL: 0
+;	x -> Y+0
+;PCODE: $000000E1 VOL: 0
+;PCODE: $000000E2 VOL: 0
+;PCODE: $000000E3 VOL: 0
+;PCODE: $000000E4 VOL: 0
+;PCODE: $000000E5 VOL: 0
+;PCODE: $000000E6 VOL: 0
+; 0001 0087 	UDR = x;										//--- Send data to USART Buffer
+;PCODE: $000000E7 VOL: 0
+;PCODE: $000000E8 VOL: 0
+; 0001 0088 }
+;PCODE: $000000E9 VOL: 0
+;PCODE: $000000EA VOL: 0
+;PCODE: $000000EB VOL: 0
+;
+;/* Function to Receive data */
+;
+;unsigned char usart_rx()
+; 0001 008D {
+;PCODE: $000000EC VOL: 0
+;PCODE: $000000ED VOL: 0
+; 0001 008E 	while(!(UCSRA & (1<<RXC)));						//--- Check for data received completed
+;PCODE: $000000EE VOL: 0
+;PCODE: $000000EF VOL: 0
+;PCODE: $000000F0 VOL: 0
+;PCODE: $000000F1 VOL: 0
+;PCODE: $000000F2 VOL: 0
+;PCODE: $000000F3 VOL: 0
+; 0001 008F 	return(UDR);									//--- Return the received data
+;PCODE: $000000F4 VOL: 0
+;PCODE: $000000F5 VOL: 0
+; 0001 0090 }
+;PCODE: $000000F6 VOL: 0
+;
+;/* Function to transmit string */
+;
+;void usart_msg(char *c)
+; 0001 0095 {
+;PCODE: $000000F7 VOL: 0
+;PCODE: $000000F8 VOL: 0
+; 0001 0096 	while(*c != '\0')								//--- Check for Null
+;PCODE: $000000F9 VOL: 0
+;	*c -> Y+0
+;PCODE: $000000FA VOL: 0
+;PCODE: $000000FB VOL: 0
+;PCODE: $000000FC VOL: 0
+;PCODE: $000000FD VOL: 0
+;PCODE: $000000FE VOL: 0
+; 0001 0097 	usart_tx(*c++);									//--- Send the String
+;PCODE: $000000FF VOL: 0
+;PCODE: $00000100 VOL: 0
+;PCODE: $00000101 VOL: 0
+;PCODE: $00000102 VOL: 0
+;PCODE: $00000103 VOL: 0
+;PCODE: $00000104 VOL: 0
+;PCODE: $00000105 VOL: 0
+; 0001 0098 }
+;PCODE: $00000106 VOL: 0
+;PCODE: $00000107 VOL: 0
+;PCODE: $00000108 VOL: 0
+;
+;
+;/****** END of Program ******/

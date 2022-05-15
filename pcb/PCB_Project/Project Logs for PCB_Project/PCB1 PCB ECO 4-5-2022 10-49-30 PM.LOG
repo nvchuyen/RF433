@@ -1,0 +1,5 @@
+Added Pin To Net: NetName=5v Pin=C9-1
+Added Pin To Net: NetName=5v Pin=J2-3
+Added Pin To Net: NetName=5v Pin=J2-5
+Added Pin To Net: NetName=5v Pin=R8-2
+Added Room: Name=rf433
