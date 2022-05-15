@@ -104,6 +104,7 @@ void twi_lcd_num(float c)
    usart_tx(tram + 48);
    usart_tx(chuc + 48);   
    usart_tx(donvi +48);
+   usart_tx('e');
 }
 /* Function to Execute Clear LCD Command */
 

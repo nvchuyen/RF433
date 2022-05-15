@@ -99,11 +99,11 @@ void twi_lcd_num(float c)
    int num_integer = c*10; 
    unsigned char tram   = num_integer/100;
    unsigned char chuc   =(num_integer/10)%10;
-   unsigned char donvi  = num_integer%10;    
-   twi_lcd_dwr(tram + 48);
-   twi_lcd_dwr(chuc + 48);   
-   twi_lcd_dwr(46);
-   twi_lcd_dwr(donvi +48);
+   unsigned char donvi  = num_integer%10; 
+   usart_tx('a');   
+   usart_tx(tram + 48);
+   usart_tx(chuc + 48);   
+   usart_tx(donvi +48);
 }
 /* Function to Execute Clear LCD Command */
 

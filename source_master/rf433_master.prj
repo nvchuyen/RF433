@@ -9,7 +9,7 @@ D=5/14/2022
 Files=2
 OpenedFiles=4
 OF1=main_master.c
-Active1=0
+Active1=1
 DebugOutputListFilesDirectory=Debug\List
 DebugOutputObjectFilesDirectory=Debug
 DebugOutputExecutableFilesDirectory=Debug\Exe
@@ -41,7 +41,7 @@ EditorPanel3=0
 TimeStamp3=1419659928
 PageIndex3=3
 OF4=twi_i2c.c
-Active4=1
+Active4=0
 EditorPanel4=0
 TimeStamp4=1420732630
 PageIndex4=4
@@ -143,8 +143,8 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1420737988
-Build=31
+COFFileTimeStamp=1420780251
+Build=42
 [DefinedSymbolsDebug]
 Count=0
 [Compiler]
@@ -246,7 +246,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=31
+Build=42
 IncludePath0=
 IncludePath1=
 IncludePath2=
@@ -463,10 +463,6 @@ RunUserProg=0
 UserProgPath=
 UserProgCmdLine=
 UserProgWorkDir=
-[HeadersList]
-Files=2
-F1=E:\Project\RF433\source_master\main_master.c
-F2=E:\Project\RF433\source_master\twi_i2c.c
 [BuildInfoCompiler]
 L1=Build configuration: Debug
 L2=Chip: ATmega8A
@@ -484,8 +480,8 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 30
-L18=3325 line(s) compiled
+L17=Build: 42
+L18=3321 line(s) compiled
 L19=No errors
 L20=7 warning(s)
 L21=
@@ -496,30 +492,30 @@ L25=Data Stack area: 0x60 to 0x15F
 L26=Data Stack size: 256 byte(s)
 L27=Estimated Data Stack usage: 80 byte(s)
 L28=
-L29=RAM Global variables area: 0x160 to 0x31A
-L30=RAM Global variables size: 443 byte(s)
+L29=RAM Global variables area: 0x160 to 0x1C8
+L30=RAM Global variables size: 105 byte(s)
 L31=
-L32=Hardware Stack area: 0x31B to 0x45F
-L33=Hardware Stack size: 325 byte(s)
+L32=Hardware Stack area: 0x1C9 to 0x45F
+L33=Hardware Stack size: 663 byte(s)
 L34=
 L35=Heap size: 0 byte(s)
 L36=
 Lines=39
 L37=EEPROM usage: 0 byte(s), 0.0% of EEPROM
-L38=Program size: 2375 words (4750 bytes), 58.0% of FLASH
-L39=182 words (364 bytes), 7.1% reduced by Code Compression
+L38=Program size: 2331 words (4662 bytes), 56.9% of FLASH
+L39=185 words (370 bytes), 7.4% reduced by Code Compression
 [BuildInfoAssembler]
 Lines=12
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
 L2=Copyright (C) 1995-2008 ATMEL Corporation
 L3=
-L4=E:\Project\RF433\source_master\Debug\List\rf433_master.asm(4259): No EEPROM data, deleting E:\Project\RF433\source_master\Debug\Exe\rf433_master.eep
+L4=E:\Project\RF433\source_master\Debug\List\rf433_master.asm(4218): No EEPROM data, deleting E:\Project\RF433\source_master\Debug\Exe\rf433_master.eep
 L5=
 L6=ATmega8A memory use summary [bytes]:
 L7=Segment   Begin    End      Code   Data   Used    Size   Use%
 L8=---------------------------------------------------------------
-L9=[.cseg] 0x000000 0x00128e   4396    354   4750    8192  58.0%
-L10=[.dseg] 0x000060 0x00031b      0    443    443    1024  43.3%
+L9=[.cseg] 0x000000 0x001236   4356    306   4662    8192  56.9%
+L10=[.dseg] 0x000060 0x0001c9      0    105    105    1024  10.3%
 L11=[.eseg] 0x000000 0x000000      0      0      0     512   0.0%
 L12=
 [USBLibrary]
@@ -529,6 +525,94 @@ HIDGeneric=0
 HIDKeyboard=0
 HIDMouse=0
 HIDJoystick=0
+[Bookmarks0]
+Row=0
+Column=0
+ScrollPosX=0
+ScrollPosY=0
+TimeStamp=1420778765
+[BookmarksFoldedCode]
+Files=4
+F1=main_master.c
+F2=twi_i2c.c
+F3=twi_i2c.h
+F4=twi_lcd.h
+[Bookmarks1]
+TimeStamp=1420778574
+Row=14
+Column=68
+ScrollPosX=0
+ScrollPosY=0
+BK0=-1
+BK1=-1
+BK2=-1
+BK3=-1
+BK4=-1
+BK5=-1
+BK6=-1
+BK7=-1
+BK8=-1
+BK9=-1
+[Bookmarks2]
+TimeStamp=1420732630
+Row=138
+Column=38
+ScrollPosX=0
+ScrollPosY=117
+BK0=-1
+BK1=-1
+BK2=-1
+BK3=-1
+BK4=-1
+BK5=-1
+BK6=-1
+BK7=-1
+BK8=-1
+BK9=-1
+[Bookmarks3]
+TimeStamp=1419659928
+Row=0
+Column=0
+ScrollPosX=0
+ScrollPosY=0
+BK0=-1
+BK1=-1
+BK2=-1
+BK3=-1
+BK4=-1
+BK5=-1
+BK6=-1
+BK7=-1
+BK8=-1
+BK9=-1
+[Bookmarks4]
+TimeStamp=1420735505
+Row=80
+Column=5
+ScrollPosX=0
+ScrollPosY=119
+BK0=-1
+BK1=-1
+BK2=-1
+BK3=-1
+BK4=-1
+BK5=-1
+BK6=-1
+BK7=-1
+BK8=-1
+BK9=-1
+[FoldedCode1]
+Blocks=0
+[FoldedCode2]
+Blocks=0
+[FoldedCode3]
+Blocks=0
+[FoldedCode4]
+Blocks=0
+[HeadersList]
+Files=2
+F1=E:\Project\RF433\source_master\main_master.c
+F2=E:\Project\RF433\source_master\twi_i2c.c
 [Header2]
 Files=8
 F1=twi_i2c.h
@@ -555,87 +639,3 @@ F11=C:\cvavr\inc\stdarg.h
 F12=C:\cvavr\inc\1wire.h
 F13=C:\cvavr\inc\interrupt.h
 F14=C:\cvavr\inc\ds18b20.h
-[Bookmarks0]
-Row=0
-Column=0
-ScrollPosX=0
-ScrollPosY=0
-TimeStamp=1420773753
-[BookmarksFoldedCode]
-Files=4
-F1=main_master.c
-F2=twi_i2c.c
-F3=twi_i2c.h
-F4=twi_lcd.h
-[Bookmarks1]
-TimeStamp=1420738084
-Row=131
-Column=45
-ScrollPosX=0
-ScrollPosY=125
-BK0=-1
-BK1=-1
-BK2=-1
-BK3=-1
-BK4=-1
-BK5=-1
-BK6=-1
-BK7=-1
-BK8=-1
-BK9=-1
-[FoldedCode1]
-Blocks=0
-[Bookmarks2]
-TimeStamp=1420732630
-Row=138
-Column=38
-ScrollPosX=0
-ScrollPosY=117
-BK0=-1
-BK1=-1
-BK2=-1
-BK3=-1
-BK4=-1
-BK5=-1
-BK6=-1
-BK7=-1
-BK8=-1
-BK9=-1
-[FoldedCode2]
-Blocks=0
-[Bookmarks3]
-TimeStamp=1419659928
-Row=0
-Column=0
-ScrollPosX=0
-ScrollPosY=0
-BK0=-1
-BK1=-1
-BK2=-1
-BK3=-1
-BK4=-1
-BK5=-1
-BK6=-1
-BK7=-1
-BK8=-1
-BK9=-1
-[FoldedCode3]
-Blocks=0
-[Bookmarks4]
-TimeStamp=1420735505
-Row=80
-Column=5
-ScrollPosX=0
-ScrollPosY=119
-BK0=-1
-BK1=-1
-BK2=-1
-BK3=-1
-BK4=-1
-BK5=-1
-BK6=-1
-BK7=-1
-BK8=-1
-BK9=-1
-[FoldedCode4]
-Blocks=0

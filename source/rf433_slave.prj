@@ -9,7 +9,7 @@ D=5/9/2022
 Files=2
 OpenedFiles=5
 OF1=main.c
-Active1=1
+Active1=0
 DebugOutputListFilesDirectory=Debug\List
 DebugOutputObjectFilesDirectory=Debug
 DebugOutputExecutableFilesDirectory=Debug\Exe
@@ -18,7 +18,7 @@ OutputListFilesDirectory=Release\List
 OutputObjectFilesDirectory=Release
 OutputExecutableFilesDirectory=Release\Exe
 OutputLinkerFilesDirectory=Release\Exe
-AllowDisplayFunctionCallTree=0
+AllowDisplayFunctionCallTree=1
 CleanUp=2
 EditorPanelMode=0
 ActiveEditorPanel=0
@@ -26,12 +26,12 @@ Active0=0
 EditorPanel0=0
 PageIndex0=0
 EditorPanel1=0
-TimeStamp1=1420733485
+TimeStamp1=1420777537
 PageIndex1=1
 OF2=twi_lcd.h
-Active2=0
+Active2=1
 EditorPanel2=0
-TimeStamp2=1420475181
+TimeStamp2=1420778501
 PageIndex2=2
 OF3=twi_i2c.c
 Active3=0
@@ -148,8 +148,8 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1420774509
-Build=42
+COFFileTimeStamp=1420778505
+Build=45
 [DefinedSymbolsDebug]
 Count=0
 [Compiler]
@@ -251,7 +251,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=42
+Build=45
 IncludePath0=
 IncludePath1=
 IncludePath2=
@@ -488,42 +488,42 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 42
-L18=16467 line(s) compiled
+L17=Build: 44
+L18=2761 line(s) compiled
 L19=No errors
-L20=17 warning(s)
+L20=15 warning(s)
 L21=
 L22=Bit variables area: 0x2 to 0x2
 L23=Bit variables size: 1 byte(s)
 L24=
 L25=Data Stack area: 0x60 to 0x15F
 L26=Data Stack size: 256 byte(s)
-L27=Estimated Data Stack usage: 146 byte(s)
+L27=Estimated Data Stack usage: 52 byte(s)
 L28=
-L29=RAM Global variables area: 0x160 to 0x218
-L30=RAM Global variables size: 185 byte(s)
+L29=RAM Global variables area: 0x160 to 0x212
+L30=RAM Global variables size: 179 byte(s)
 L31=
-L32=Hardware Stack area: 0x219 to 0x45F
-L33=Hardware Stack size: 583 byte(s)
+L32=Hardware Stack area: 0x213 to 0x45F
+L33=Hardware Stack size: 589 byte(s)
 L34=
 L35=Heap size: 0 byte(s)
 L36=
 Lines=39
 L37=EEPROM usage: 0 byte(s), 0.0% of EEPROM
-L38=Program size: 3089 words (6178 bytes), 75.4% of FLASH
-L39=506 words (1012 bytes), 14.1% reduced by Code Compression
+L38=Program size: 2020 words (4040 bytes), 49.3% of FLASH
+L39=113 words (226 bytes), 5.3% reduced by Code Compression
 [BuildInfoAssembler]
 Lines=12
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
 L2=Copyright (C) 1995-2008 ATMEL Corporation
 L3=
-L4=E:\Project\RF433\source\Debug\List\rf433_slave.asm(4967): No EEPROM data, deleting E:\Project\RF433\source\Debug\Exe\rf433_slave.eep
+L4=E:\Project\RF433\source\Debug\List\rf433_slave.asm(3696): No EEPROM data, deleting E:\Project\RF433\source\Debug\Exe\rf433_slave.eep
 L5=
 L6=ATmega8A memory use summary [bytes]:
 L7=Segment   Begin    End      Code   Data   Used    Size   Use%
 L8=---------------------------------------------------------------
-L9=[.cseg] 0x000000 0x001822   5904    274   6178    8192  75.4%
-L10=[.dseg] 0x000060 0x000219      0    185    185    1024  18.1%
+L9=[.cseg] 0x000000 0x000fc8   3784    256   4040    8192  49.3%
+L10=[.dseg] 0x000060 0x000213      0    179    179    1024  17.5%
 L11=[.eseg] 0x000000 0x000000      0      0      0     512   0.0%
 L12=
 [USBLibrary]
@@ -538,7 +538,7 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1420733538
+TimeStamp=1420778534
 [BookmarksFoldedCode]
 Files=5
 F1=main.c
@@ -547,11 +547,11 @@ F3=C:\cvavr\inc\twi.h
 F4=twi_lcd.h
 F5=twi_i2c.h
 [Bookmarks1]
-TimeStamp=1420733485
-Row=55
-Column=23
+TimeStamp=1420777537
+Row=58
+Column=19
 ScrollPosX=0
-ScrollPosY=30
+ScrollPosY=36
 BK0=-1
 BK1=-1
 BK2=-1
@@ -595,11 +595,11 @@ BK7=-1
 BK8=-1
 BK9=-1
 [Bookmarks4]
-TimeStamp=1420475181
-Row=83
+TimeStamp=1420778501
+Row=106
 Column=14
 ScrollPosX=0
-ScrollPosY=17
+ScrollPosY=96
 BK0=-1
 BK1=-1
 BK2=-1
@@ -630,16 +630,16 @@ BK6=-1
 BK7=-1
 BK8=-1
 BK9=-1
-[FoldedCode1]
-Blocks=0
-[FoldedCode2]
-Blocks=0
-[FoldedCode5]
-Blocks=0
-[FoldedCode3]
-Blocks=0
-[FoldedCode4]
-Blocks=0
+[Header2]
+Files=8
+F1=twi_i2c.h
+F2=C:\cvavr\inc\io.h
+F3=C:\cvavr\inc\mega8.h
+F4=C:\cvavr\inc\mega8_bits.h
+F5=C:\cvavr\inc\delay.h
+F6=C:\cvavr\inc\twi.h
+F7=C:\cvavr\inc\stdbool.h
+F8=C:\cvavr\inc\math.h
 [Header1]
 Files=13
 F1=C:\cvavr\inc\delay.h
@@ -655,13 +655,13 @@ F10=C:\cvavr\inc\stdio.h
 F11=C:\cvavr\inc\stdarg.h
 F12=C:\cvavr\inc\1wire.h
 F13=C:\cvavr\inc\ds18b20.h
-[Header2]
-Files=8
-F1=twi_i2c.h
-F2=C:\cvavr\inc\io.h
-F3=C:\cvavr\inc\mega8.h
-F4=C:\cvavr\inc\mega8_bits.h
-F5=C:\cvavr\inc\delay.h
-F6=C:\cvavr\inc\twi.h
-F7=C:\cvavr\inc\stdbool.h
-F8=C:\cvavr\inc\math.h
+[FoldedCode1]
+Blocks=0
+[FoldedCode2]
+Blocks=0
+[FoldedCode5]
+Blocks=0
+[FoldedCode3]
+Blocks=0
+[FoldedCode4]
+Blocks=0

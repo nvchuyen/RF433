@@ -239,6 +239,8 @@
 ;PCODE: $000000C8 VOL: 0
 ;PCODE: $000000C9 VOL: 0
 ;PCODE: $000000CA VOL: 0
+;PCODE: $000000CB VOL: 0
+;PCODE: $000000CC VOL: 0
 
 	.DSEG
 _0x6:
@@ -256,7 +258,7 @@ _0x6:
 ; 0000 0019 {
 
 	.CSEG
-;PCODE: $000000CB VOL: 0
+;PCODE: $000000CD VOL: 0
 ; 0000 001A     // Port C initialization
 ; 0000 001B //// Function: Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In
 ; 0000 001C //DDRC=(0<<DDC6) | (0<<DDC5) | (0<<DDC4) | (0<<DDC3) | (0<<DDC2) | (0<<DDC1) | (0<<DDC0);
@@ -264,30 +266,30 @@ _0x6:
 ; 0000 001E //PORTC=(0<<PORTC6) | (0<<PORTC5) | (0<<PORTC4) | (0<<PORTC3) | (0<<PORTC2) | (0<<PORTC1) | (0<<PORTC0);
 ; 0000 001F 
 ; 0000 0020     twi_init();                                    //--- TWI Initialize
-;PCODE: $000000CC VOL: 0
+;PCODE: $000000CE VOL: 0
 ; 0000 0021 //    twi_lcd_init();                                //--- TWI LCD Initialize
 ; 0000 0022 //    twi_lcd_msg("RF433");                        //--- Send a String to LCD
 ; 0000 0023     /* Replace with your application code */
 ; 0000 0024 
 ; 0000 0025     w1_init();
-;PCODE: $000000CD VOL: 0
-; 0000 0026     ds18b20_init(NULL, 0 , 0 ,DS18B20_10BIT_RES )  ;
-;PCODE: $000000CE VOL: 0
 ;PCODE: $000000CF VOL: 0
+; 0000 0026     ds18b20_init(NULL, 0 , 0 ,DS18B20_10BIT_RES )  ;
 ;PCODE: $000000D0 VOL: 0
 ;PCODE: $000000D1 VOL: 0
 ;PCODE: $000000D2 VOL: 0
 ;PCODE: $000000D3 VOL: 0
 ;PCODE: $000000D4 VOL: 0
 ;PCODE: $000000D5 VOL: 0
-; 0000 0027     while (1)
 ;PCODE: $000000D6 VOL: 0
+;PCODE: $000000D7 VOL: 0
+; 0000 0027     while (1)
+;PCODE: $000000D8 VOL: 0
 ; 0000 0028     {
 ; 0000 0029       temp = ds18b20_temperature(NULL)  ;
-;PCODE: $000000D7 VOL: 0
-;PCODE: $000000D8 VOL: 0
 ;PCODE: $000000D9 VOL: 0
 ;PCODE: $000000DA VOL: 0
+;PCODE: $000000DB VOL: 0
+;PCODE: $000000DC VOL: 0
 ; 0000 002A 
 ; 0000 002B 
 ; 0000 002C  //       printf("Nhiet do: %f\r\n", temp);
@@ -297,39 +299,26 @@ _0x6:
 ; 0000 0030  //        usart_msg("uart:");
 ; 0000 0031 
 ; 0000 0032         if(PINB.0 == 0)
-;PCODE: $000000DB VOL: 0
-;PCODE: $000000DC VOL: 0
 ;PCODE: $000000DD VOL: 0
+;PCODE: $000000DE VOL: 0
+;PCODE: $000000DF VOL: 0
 ; 0000 0033         {
 ; 0000 0034 //        twi_lcd_num(temp)
 ; 0000 0035 //         temp = ds18b20_temperature(NULL)  ;
-; 0000 0036          usart_msg("uart:");
-;PCODE: $000000DE VOL: 0
-;PCODE: $000000DF VOL: 0
-;PCODE: $000000E0 VOL: 0
+; 0000 0036 //         usart_msg("uart:");
 ; 0000 0037 //            usart_tx('a');
 ; 0000 0038 //            usart_tx('1');
 ; 0000 0039 //            usart_tx('4');
-; 0000 003A             printf("%f\r\n", temp);
+; 0000 003A //            printf("%f\r\n", temp);
+; 0000 003B         twi_lcd_num(temp);
+;PCODE: $000000E0 VOL: 0
 ;PCODE: $000000E1 VOL: 0
+; 0000 003C         }
+; 0000 003D     }
 ;PCODE: $000000E2 VOL: 0
 ;PCODE: $000000E3 VOL: 0
 ;PCODE: $000000E4 VOL: 0
+; 0000 003E }
 ;PCODE: $000000E5 VOL: 0
 ;PCODE: $000000E6 VOL: 0
 ;PCODE: $000000E7 VOL: 0
-;PCODE: $000000E8 VOL: 0
-;PCODE: $000000E9 VOL: 0
-; 0000 003B         }
-; 0000 003C     }
-;PCODE: $000000EA VOL: 0
-;PCODE: $000000EB VOL: 0
-;PCODE: $000000EC VOL: 0
-; 0000 003D }
-;PCODE: $000000ED VOL: 0
-;PCODE: $000000EE VOL: 0
-;PCODE: $000000EF VOL: 0
-
-	.DSEG
-_0xB:
-	.BYTE 0x6

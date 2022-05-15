@@ -51,11 +51,12 @@ void main(void)
         {   
 //        twi_lcd_num(temp)
 //         temp = ds18b20_temperature(NULL)  ; 
-         usart_msg("uart:"); 
+//         usart_msg("uart:"); 
 //            usart_tx('a');  
 //            usart_tx('1'); 
 //            usart_tx('4');
-            printf("%f\r\n", temp); 
+//            printf("%f\r\n", temp); 
+        twi_lcd_num(temp);
         }
     }
 }

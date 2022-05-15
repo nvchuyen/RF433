@@ -39,7 +39,7 @@ Data Stack size         : 256
 #define DATA_OVERRUN (1<<DOR)
 
 // USART Receiver buffer
-#define RX_BUFFER_SIZE 256//64
+#define RX_BUFFER_SIZE 5//64
 char rx_buffer[RX_BUFFER_SIZE];
 
 #if RX_BUFFER_SIZE <= 256
@@ -64,15 +64,16 @@ char status,data;
 status=UCSRA;
 data=UDR;
     usart_msg("INT: "); 
-    printf("Buff1-buff2= %x - %x  - %x - %x - %x\r\n", rx_buffer[0], rx_buffer[1],  rx_buffer[2],  rx_buffer[3], rx_buffer[4]);
+//    printf("Buff1-buff2= %x - %x  - %x - %x - %x\r\n", rx_buffer[0], rx_buffer[1],  rx_buffer[2],  rx_buffer[3], rx_buffer[4]);
 if ((status & (FRAMING_ERROR | PARITY_ERROR | DATA_OVERRUN))==0)
    {
-   rx_buffer[rx_wr_index++]=data;
+   rx_buffer[rx_wr_index++]=data;     
+   printf("Buff1-buff2= %x - %x  - %x - %x - %x\r\n", rx_buffer[0], rx_buffer[1],  rx_buffer[2],  rx_buffer[3], rx_buffer[4]);
 #if RX_BUFFER_SIZE == 256
    // special case for receiver buffer size=256
    if (++rx_counter == 0) rx_buffer_overflow=1;
 #else
-   if (rx_wr_index == RX_BUFFER_SIZE) rx_wr_index=0;
+   if (rx_wr_index <= RX_BUFFER_SIZE){ rx_wr_index=0; printf("clear rx_wr_index interrup \r\n");}
    if (++rx_counter == RX_BUFFER_SIZE)
       {
       rx_counter=0;
@@ -114,7 +115,7 @@ PORTC=(0<<PORTC6) | (0<<PORTC5) | (0<<PORTC4) | (0<<PORTC3) | (0<<PORTC2) | (0<<
 
     twi_init();                                    //--- TWI Initialize
     twi_lcd_init();                                //--- TWI LCD Initialize
-    twi_lcd_msg("RF433");                        //--- Send a String to LCD
+    twi_lcd_msg(" RF433");                        //--- Send a String to LCD
     /* Replace with your application code */                               
 
     w1_init();     
@@ -125,38 +126,37 @@ PORTC=(0<<PORTC6) | (0<<PORTC5) | (0<<PORTC4) | (0<<PORTC3) | (0<<PORTC2) | (0<<
     while (1) 
     {                  
      twi_lcd_cmd(0xC0);    
-     //        twi_lcd_msg("nhiet do TRUYEN: \r\n"); 
      if((rx_buffer[0] == 'a'))// && (rx_buffer[1] == '*'))    
         {             
-          //  usart_msg("data nhiet do");      
-        //   printf("hien thi so a \r\n");   
+           delay_ms(500);
+           printf("hien thi so a \r\n");   
              twi_lcd_cmd(0xC0);    
              twi_lcd_msg("nhietdo:"); 
-//            twi_lcd_dwr(49);   
-//            twi_lcd_dwr(50); 
-//             twi_lcd_dwr(46);
-//            twi_lcd_dwr(52);
+            twi_lcd_dwr(rx_buffer[2]);
             twi_lcd_dwr(rx_buffer[2]);  
-            twi_lcd_dwr(rx_buffer[3]);   
-            twi_lcd_dwr(46);     
-            twi_lcd_dwr(rx_buffer[4]);  
-                rx_wr_index =0;
-            
+            twi_lcd_dwr(46); 
+            twi_lcd_dwr(rx_buffer[3]);       
+            if(rx_buffer[4] == 'e') 
+            {   
+                printf("clear rx_wr_index in while \r\n ");    
+                rx_buffer[0] = 0;
+//                rx_wr_index =0;
+             }
         }  
-      else if(rx_buffer[0] != 'a')
-         {   
-          delay_ms(500);
-          usart_msg("data clear buffer");   
-           usart_msg("\r\n buffer 0: ");
-          usart_tx(rx_buffer[0]);  
-           usart_msg("\r\n buffer 1: ");   
-           usart_tx(rx_buffer[1]);   
-           usart_msg("\r\n buffer 2: ");
-           usart_tx(rx_buffer[2]);  
-           usart_msg("\r\n buffer 3: ");
-           usart_tx(rx_buffer[3]);  
-           usart_msg("\r\n buffer 4: ");     
-           usart_tx(rx_buffer[4]); 
+//      else if(rx_buffer[0] != 'a')
+//         {   
+//          delay_ms(500);
+//          usart_msg("data clear buffer");   
+//           usart_msg("\r\n buffer 0: ");
+//          usart_tx(rx_buffer[0]);  
+//           usart_msg("\r\n buffer 1: ");   
+//           usart_tx(rx_buffer[1]);   
+//           usart_msg("\r\n buffer 2: ");
+//           usart_tx(rx_buffer[2]);  
+//           usart_msg("\r\n buffer 3: ");
+//           usart_tx(rx_buffer[3]);  
+//           usart_msg("\r\n buffer 4: ");     
+//           usart_tx(rx_buffer[4]); 
 
 //           rx_buffer[0] =0;
 //           rx_buffer[1] =0;
@@ -164,6 +164,6 @@ PORTC=(0<<PORTC6) | (0<<PORTC5) | (0<<PORTC4) | (0<<PORTC3) | (0<<PORTC2) | (0<<
 //           rx_buffer[3] =0;       
 //           rx_buffer[4] =0;   
 //            rx_wr_index =0;
-         }
+//         }
     }
 }
