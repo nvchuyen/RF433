@@ -20,7 +20,7 @@
 #include "twi_i2c.h"
 #include <stdio.h>
 
-#define PCF8574	0x27							//--- Slave Address is 7-Bit and Last Bit is either read or write
+#define PCF8574	0x20							//--- Slave Address is 7-Bit and Last Bit is either read or write
 #define	WRITE			0
 #define READ			1
 

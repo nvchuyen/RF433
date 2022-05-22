@@ -20,7 +20,7 @@
 #include "twi_i2c.h"
 #include <stdio.h>
 
-#define PCF8574	        0x27							//--- Slave Address is 7-Bit and Last Bit is either read or write
+#define PCF8574	        0x20							//--- Slave Address is 7-Bit and Last Bit is either read or write
 #define	WRITE			0
 #define READ			1
 
@@ -94,6 +94,21 @@ void twi_lcd_msg(char *c)
 }
 
 /* Function to Send number of Data */
+
+void twi_lcd_num_display  (float c)
+{
+  int num_integer = c*10; 
+   unsigned char tram   = num_integer/100;
+   unsigned char chuc   =(num_integer/10)%10;
+   unsigned char donvi  = num_integer%10; 
+   
+    twi_lcd_dwr(tram+48);
+    twi_lcd_dwr(chuc +48);  
+    twi_lcd_dwr(46); 
+    twi_lcd_dwr(donvi +48); 
+}
+
+
 void twi_lcd_num(float c)
 {  
    int num_integer = c*10; 
@@ -101,10 +116,15 @@ void twi_lcd_num(float c)
    unsigned char chuc   =(num_integer/10)%10;
    unsigned char donvi  = num_integer%10; 
    usart_tx('a');   
-   usart_tx(tram + 48);
-   usart_tx(chuc + 48);   
-   usart_tx(donvi +48);
-   usart_tx('e');
+   delay_ms(10);
+   usart_tx(tram + 48);  
+    delay_ms(10);
+   usart_tx(chuc + 48);  
+    delay_ms(10); 
+   usart_tx(donvi +48); 
+    delay_ms(10);
+   usart_tx('e'); 
+    delay_ms(200);
 }
 /* Function to Execute Clear LCD Command */
 

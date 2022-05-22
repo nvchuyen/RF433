@@ -1,4 +1,4 @@
-VERSION:3 SOURCE_TIMESTAMP:54AF5C05
+VERSION:3 SOURCE_TIMESTAMP:54B2039C
 NODE:I LEVEL:0 LINE:17 "C:\cvavr\inc\io.h"
 NODE:I LEVEL:0 LINE:19 "C:\cvavr\inc\delay.h"
 NODE:I LEVEL:0 LINE:20 "E:\Project\RF433\source\twi_i2c.h"
@@ -12,6 +12,7 @@ NODE:F LEVEL:0 LINE:41 "twi_lcd_4bit_send(unsigned char x)"
 NODE:F LEVEL:0 LINE:70 "twi_lcd_cmd(unsigned char x)"
 NODE:F LEVEL:0 LINE:81 "twi_lcd_dwr(unsigned char x)"
 NODE:F LEVEL:0 LINE:90 "twi_lcd_msg(unsigned char * c)"
-NODE:F LEVEL:0 LINE:97 "twi_lcd_num(float c)"
-NODE:F LEVEL:0 LINE:111 "twi_lcd_clear(void)"
-NODE:F LEVEL:0 LINE:118 "twi_lcd_init(void)"
+NODE:F LEVEL:0 LINE:98 "twi_lcd_num_display(float c)"
+NODE:F LEVEL:0 LINE:112 "twi_lcd_num(float c)"
+NODE:F LEVEL:0 LINE:131 "twi_lcd_clear(void)"
+NODE:F LEVEL:0 LINE:138 "twi_lcd_init(void)"

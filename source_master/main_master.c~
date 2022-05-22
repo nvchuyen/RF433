@@ -41,18 +41,8 @@ Data Stack size         : 256
 // USART Receiver buffer
 #define RX_BUFFER_SIZE 5//64
 char rx_buffer[RX_BUFFER_SIZE];
-
-#if RX_BUFFER_SIZE <= 256
 unsigned char rx_wr_index=0,rx_rd_index=0;
-#else
-unsigned int rx_wr_index=0,rx_rd_index=0;
-#endif
-
-#if RX_BUFFER_SIZE < 256
 unsigned char rx_counter=0;
-#else
-unsigned int rx_counter=0;
-#endif
 
 // This flag is set on USART Receiver buffer overflow
 bit rx_buffer_overflow;
@@ -64,22 +54,22 @@ char status,data;
 status=UCSRA;
 data=UDR;
     usart_msg("INT: "); 
-//    printf("Buff1-buff2= %x - %x  - %x - %x - %x\r\n", rx_buffer[0], rx_buffer[1],  rx_buffer[2],  rx_buffer[3], rx_buffer[4]);
+
 if ((status & (FRAMING_ERROR | PARITY_ERROR | DATA_OVERRUN))==0)
    {
    rx_buffer[rx_wr_index++]=data;     
-   printf("Buff1-buff2= %x - %x  - %x - %x - %x\r\n", rx_buffer[0], rx_buffer[1],  rx_buffer[2],  rx_buffer[3], rx_buffer[4]);
-#if RX_BUFFER_SIZE == 256
-   // special case for receiver buffer size=256
-   if (++rx_counter == 0) rx_buffer_overflow=1;
-#else
-   if (rx_wr_index == RX_BUFFER_SIZE){ rx_wr_index=0; printf("clear rx_wr_index interrup \r\n");}
+   printf("Buff1-buff2= %x - %x  - %x - %x - %x\r\n", rx_buffer[0], rx_buffer[1],  rx_buffer[2],  rx_buffer[3], rx_buffer[4]);    
+   printf ("rx_wr_index= %x \r\n", rx_wr_index);
+   if (rx_wr_index == RX_BUFFER_SIZE)
+	{ 	
+		rx_wr_index=0;
+		printf("clear rx_wr_index interrup \r\n");
+		}
    if (++rx_counter == RX_BUFFER_SIZE)
-      {
+    {
       rx_counter=0;
       rx_buffer_overflow=1;
       }
-#endif
    }
 }
 
@@ -107,6 +97,7 @@ return data;
 
 void main(void)
 {
+float temp = 0;
   // Port C initialization
 // Function: Bit6=In Bit5=In Bit4=In Bit3=In Bit2=In Bit1=In Bit0=In 
 DDRC=(0<<DDC6) | (0<<DDC5) | (0<<DDC4) | (0<<DDC3) | (0<<DDC2) | (0<<DDC1) | (0<<DDC0);
@@ -115,32 +106,38 @@ PORTC=(0<<PORTC6) | (0<<PORTC5) | (0<<PORTC4) | (0<<PORTC3) | (0<<PORTC2) | (0<<
 
     twi_init();                                    //--- TWI Initialize
     twi_lcd_init();                                //--- TWI LCD Initialize
-    twi_lcd_msg(" RF433");                        //--- Send a String to LCD
+    twi_lcd_msg("RF433");                        //--- Send a String to LCD
     /* Replace with your application code */                               
 
     w1_init();     
-//    ds18b20_init(NULL, 0 , 0 ,DS18B20_10BIT_RES )  ; 
+   ds18b20_init(NULL, 0 , 0 ,DS18B20_10BIT_RES )  ; 
      sei(); //cho phep ngat toan cuc
 //    twi_lcd_cmd(0xC0);    
 //    twi_lcd_msg("nhiet do: \r\n"); 
     while (1) 
-    {                  
-     twi_lcd_cmd(0xC0);    
+    {   
+     // printf("hien thi so a \r\n");               
+     twi_lcd_cmd(0xC0);   
+//        temp = ds18b20_temperature(NULL)  ;
+//        twi_lcd_msg("nhiet do: \r\n"); 
+//        printf(" %f", temp);  
+//        delay_ms(500); 
      if((rx_buffer[0] == 'a'))// && (rx_buffer[1] == '*'))    
         {             
            delay_ms(500);
-           printf("hien thi so a \r\n");   
+      //     printf("hien thi so a \r\n");   
              twi_lcd_cmd(0xC0);    
-             twi_lcd_msg("nhietdo:"); 
-            twi_lcd_dwr(rx_buffer[2]);
+             twi_lcd_msg("nhietdo: "); 
+            twi_lcd_dwr(rx_buffer[1]);
             twi_lcd_dwr(rx_buffer[2]);  
             twi_lcd_dwr(46); 
             twi_lcd_dwr(rx_buffer[3]);       
             if(rx_buffer[4] == 'e') 
             {   
-                printf("clear rx_wr_index in while \r\n ");    
-                rx_buffer[0] = 0;
-//                rx_wr_index =0;
+            //    printf("clear rx_wr_index in while \r\n ");    
+               rx_buffer[0] = 0; 
+               rx_buffer[4] = 0;
+//               rx_wr_index =0;
              }
         }  
 //      else if(rx_buffer[0] != 'a')

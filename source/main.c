@@ -30,8 +30,8 @@ void main(void)
 //PORTC=(0<<PORTC6) | (0<<PORTC5) | (0<<PORTC4) | (0<<PORTC3) | (0<<PORTC2) | (0<<PORTC1) | (0<<PORTC0);
 
     twi_init();                                    //--- TWI Initialize
-//    twi_lcd_init();                                //--- TWI LCD Initialize
-//    twi_lcd_msg("RF433");                        //--- Send a String to LCD
+   twi_lcd_init();                                //--- TWI LCD Initialize
+   twi_lcd_msg("RF433");                        //--- Send a String to LCD
     /* Replace with your application code */                               
 
     w1_init();     
@@ -40,11 +40,11 @@ void main(void)
     {   
       temp = ds18b20_temperature(NULL)  ;   
       
-        
- //       printf("Nhiet do: %f\r\n", temp);
+   //     twi_lcd_cmd(0xC0);  
+     //   printf("Nhiet do: %f\r\n", temp);
   //     twi_lcd_cmd(0xC0);                        //--- Select 2nd Row    
-   //   twi_lcd_msg("nhiet do: 7 *C \r\n");            //--- Send a String to LCD 
-//        twi_lcd_num(temp)  ;
+   //  twi_lcd_msg("nhiet do:");            //--- Send a String to LCD 
+     //   twi_lcd_num_display(temp)  ;
  //        usart_msg("uart:");  
         
         if(PINB.0 == 0)    
@@ -56,7 +56,7 @@ void main(void)
 //            usart_tx('1'); 
 //            usart_tx('4');
 //            printf("%f\r\n", temp); 
-        twi_lcd_num(temp);
+            twi_lcd_num(temp);
         }
     }
 }
